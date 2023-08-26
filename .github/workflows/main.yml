@@ -39,6 +39,9 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
+         python -m pip uninstall pip
+         python -m ensurepip
+         python -m pip install -U pip
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
     - name: execute script 
       run: python elements.py
