@@ -31,6 +31,14 @@ jobs:
         ELEMENTS_PASSWORD: ${{ secrets.ELEMENTS_PASSWORD }}
 
     steps:
+    - name: yarn install 
+      run: yarn install
+
+    - name: Build                   
+      run: yarn build
+      env:
+      CI: "" # 경고를 에러로 보지 않게 함
+      
     - uses: actions/checkout@v3
     - name: Set up Python 3.10
       uses: actions/setup-python@v3
@@ -39,17 +47,6 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-         python -m pip uninstall pip
-         python -m ensurepip
-         python -m pip install -U pip
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
     - name: execute script 
       run: python elements.py
-
-    - name: yarn install 
-      run: yarn install
-
-    - name: Build                   
-      run: yarn build
-      env:
-      CI: "" # 경고를 에러로 보지 않게 함
