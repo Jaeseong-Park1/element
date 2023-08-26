@@ -45,3 +45,11 @@ jobs:
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
     - name: execute script 
       run: python elements.py
+
+    - name: yarn install 
+      run: yarn install
+
+    - name: Build                   
+      run: yarn build
+      env:
+      CI: "" # 경고를 에러로 보지 않게 함
